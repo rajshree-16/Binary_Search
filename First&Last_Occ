@@ -1,0 +1,50 @@
+public:
+    pair<long,long> indexes(vector<long long> v, long long x)
+    {
+        // code here
+        pair<long,long>ans;
+        ans={First_Occ(v,x),Last_Occ(v,x)};
+        return ans;
+        
+    }
+  
+   long long First_Occ(vector<long long> v, long long x){
+            long long n=v.size();
+            long long s=0;
+            long long e=n-1;
+            int first=-1;
+            while(s<=e){
+                long long mid=s+(e-s)/2;
+                if(v[mid]==x){
+                    first=mid;
+                    e=mid-1;
+                }
+                else if(v[mid]<x){
+                    s=mid+1;
+                }
+                else{
+                    e=mid-1;
+                }
+            }
+            return first;
+        }
+    long long Last_Occ(vector<long long> v, long long x){
+            long long n=v.size();
+            long long s=0;
+            long long e=n-1;
+            int last=-1;
+            while(s<=e){
+                long long mid=s+(e-s)/2;
+                if(v[mid]==x){
+                    last=mid;
+                    s=mid+1;
+                }
+                else if(v[mid]<x){
+                    s=mid+1;
+                }
+                else{
+                    e=mid-1;
+                }
+            }
+            return last;
+        }
